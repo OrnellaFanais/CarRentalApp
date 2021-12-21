@@ -36,5 +36,23 @@ namespace CarRentalApp
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //I am Able to generate variable and then store the value
+            //from the control inside the variable
+            string customerName = tbCustomerName.Text;
+            //Convert the datas into strings
+            string dateOut = dtRented.Value.ToString();
+            string dateIn = dtReturned.Value.ToString();
+
+            var carType = cbTypeOfCar.SelectedItem.ToString();
+            
+            MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
+                $"Date rented: {dateOut} \n\r" +
+                $"Date renturned: {dateIn} \n\r" +
+                $"Car Type: {carType} \n\r" +
+                $"THANK YOU FOR YOUR BUSINESS");
+        }
     }
 }
