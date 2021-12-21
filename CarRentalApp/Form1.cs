@@ -39,20 +39,54 @@ namespace CarRentalApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //I am Able to generate variable and then store the value
-            //from the control inside the variable
-            string customerName = tbCustomerName.Text;
-            //Convert the datas into strings
-            string dateOut = dtRented.Value.ToString();
-            string dateIn = dtReturned.Value.ToString();
+            try
+            {
+                //I am Able to generate variable and then store the value
+                //from the control inside the variable
+                string customerName = tbCustomerName.Text;
 
-            var carType = cbTypeOfCar.SelectedItem.ToString();
+                var dateOut = dtRented.Value;
+                var dateIn = dtReturned.Value;
+                double cost = Convert.ToDouble(tbCost.Text);
+                var carType = cbTypeOfCar.Text;
+
+                var isValid = true;
+                var errorMessage = "";
+
+                if (string.IsNullOrWhiteSpace(customerName) || string.IsNullOrWhiteSpace(carType))
+                {
+                    isValid = false;
+                    errorMessage += "Error: Please enter missing data.\n\r";
+                }
+
+                if (dateOut > dateIn)
+                {
+                    isValid = false;
+                    errorMessage += "Error: Illegal Date Selection.\n\r";
+                }
+
+                //if (isValid == true)
+                if (isValid)
+                {
+                    MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
+                    $"Date rented: {dateOut} \n\r" +
+                    $"Date renturned: {dateIn} \n\r" +
+                    $"Cost: {cost} \n\r" +
+                    $"Car Type: {carType} \n\r" +
+                    $"THANK YOU FOR YOUR BUSINESS");
+                }
+                else
+                {
+                    MessageBox.Show(errorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //throw;
+            }
             
-            MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
-                $"Date rented: {dateOut} \n\r" +
-                $"Date renturned: {dateIn} \n\r" +
-                $"Car Type: {carType} \n\r" +
-                $"THANK YOU FOR YOUR BUSINESS");
+            
         }
     }
 }
