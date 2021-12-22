@@ -75,6 +75,21 @@ namespace CarRentalApp
                 //if (isValid == true)
                 if (isValid)
                 {
+                    
+                    //This class directly matches the car into a card table that we created
+                    var rentalRecord = new CarRentalRecord();
+
+                    //the value of the customer name value that I just collected from my form
+                    //the textbox store in customer name in the winforms
+                    rentalRecord.CustomerName = customerName;
+                    rentalRecord.DateRented = dateOut;
+                    rentalRecord.DateReturned = dateIn;
+                    rentalRecord.Cost = (decimal)cost;
+                    rentalRecord.TypeOfCarId = (int)cbTypeOfCar.SelectedValue;
+
+                    carRentalEntities.CarRentalRecords.Add(rentalRecord);
+                    carRentalEntities.SaveChanges();
+
                     MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
                     $"Date rented: {dateOut} \n\r" +
                     $"Date renturned: {dateIn} \n\r" +
