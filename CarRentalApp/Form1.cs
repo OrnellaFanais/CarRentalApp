@@ -12,9 +12,16 @@ namespace CarRentalApp
 {
     public partial class Form1 : Form
     {
+        //carRentalEntities is going to give me access to every single entity
+        //that is inside of my model or every table.
+        //I would of basically established an instance of connection
+        //to my database through the declaration of this property
+        private readonly CarRentalEntities carRentalEntities;
         public Form1()
         {
             InitializeComponent();
+            //I initialized it in the constructor
+            carRentalEntities = new CarRentalEntities();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -87,6 +94,27 @@ namespace CarRentalApp
             }
             
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //when I want to call in the database I use
+            // that object was previously declared and initialized
+            //Select * from Cars (I'm querying the database for the list
+            //of cars
+            var cars = carRentalEntities.Cars.ToList();
+
+            //call our combo box (displayMember id the takes that you see
+            //I want my combo box whatever data source
+            cbTypeOfCar.DisplayMember = "Name";
+            
+            // set the value member to be Id (stored the Id)
+            cbTypeOfCar.ValueMember = "Id";
+            
+            //set the data source to be the car. I'm going to set
+            //that this list od cars with Id and name sould be 
+            //the souce for the list of items coming into this combo box
+            cbTypeOfCar.DataSource = cars;
         }
     }
 }
