@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace CarRentalApp
 {
-    public partial class Form1 : Form
+    public partial class AddRentalRecord : Form
     {
         //carRentalEntities is going to give me access to every single entity
         //that is inside of my model or every table.
         //I would of basically established an instance of connection
         //to my database through the declaration of this property
         private readonly CarRentalEntities carRentalEntities;
-        public Form1()
+        public AddRentalRecord()
         {
             InitializeComponent();
             //I initialized it in the constructor
@@ -74,8 +74,7 @@ namespace CarRentalApp
 
                 //if (isValid == true)
                 if (isValid)
-                {
-                    
+                {                   
                     //This class directly matches the car into a card table that we created
                     var rentalRecord = new CarRentalRecord();
 
