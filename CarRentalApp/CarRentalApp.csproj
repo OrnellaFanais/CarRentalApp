@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRentalRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRentalRecord.Designer.cs">
+      <DependentUpon>AddRentalRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs">
       <DependentUpon>CarRentalDb.tt</DependentUpon>
     </Compile>
@@ -75,12 +81,6 @@
     </Compile>
     <Compile Include="CarRentalRecord.cs">
       <DependentUpon>CarRentalDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AddRentalRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddRentalRecord.Designer.cs">
-      <DependentUpon>AddRentalRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -136,19 +136,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="CarRentalDb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CarRentalDb.Context.cs</LastGenOutput>
       <DependentUpon>CarRentalDb.edmx</DependentUpon>
+      <LastGenOutput>CarRentalDb.Context.cs</LastGenOutput>
     </Content>
     <Content Include="CarRentalDb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CarRentalDb.edmx</DependentUpon>
       <LastGenOutput>CarRentalDb.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

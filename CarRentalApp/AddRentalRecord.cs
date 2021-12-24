@@ -116,8 +116,14 @@ namespace CarRentalApp
             // that object was previously declared and initialized
             //Select * from Cars (I'm querying the database for the list
             //of cars
-            var cars = carRentalEntities.Cars.ToList();
-
+            //var cars = carRentalEntities.Cars.ToList();
+            var cars = carRentalEntities.Cars
+                .Select(q => new
+                {
+                    Id = q.Id,
+                    Name = q.Make + " " + q.Model
+                })
+                .ToList();
             //call our combo box (displayMember id the takes that you see
             //I want my combo box whatever data source
             cbTypeOfCar.DisplayMember = "Name";
