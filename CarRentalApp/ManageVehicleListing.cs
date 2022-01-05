@@ -33,31 +33,58 @@ namespace CarRentalApp
             //gvVehicleList.Columns[1].HeaderText = "Make";
 
             var cars = _db.Cars
-                .Select(q => new 
+                .Select(q => new
                 {
-                    Make = q.Make, 
-                    Model = q.Model, 
-                    Vin = q.Vin, 
-                    Year = q.Year, 
-                    LicensePlateNumber = q.LicensePlateNumber
+                    Make = q.Make,
+                    Model = q.Model,
+                    Vin = q.Vin,
+                    Year = q.Year,
+                    LicensePlateNumber = q.LicensePlateNumber,
+                    q.Id
                 })
                 .ToList();
             gvVehicleList.DataSource = cars;
+            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
+            gvVehicleList.Columns[5].Visible = false;
         }
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
-
+            AddEditVehicle addEditVehicle = new AddEditVehicle();
+            addEditVehicle.MdiParent = this.MdiParent;
+            addEditVehicle.Show();
         }
 
         private void btnEditCar_Click(object sender, EventArgs e)
         {
+            // get Id of sellected row = when click to row
+            // give me the selected the first selected row, and give me 
+            // the cell call id (it's column) and the value it's not
+            //visible 
+            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
+            //query database for record
+            var car = _db.Cars.FirstOrDefault(q => q.Id == id);
+
+            //launch AddEditVehicle window with data
+            var addEditVehicle = new AddEditVehicle(car);
+            addEditVehicle.MdiParent = this.MdiParent;
+            addEditVehicle.Show();
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
         {
+            // get Id of sellected row = when click to row
+            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
+            //query database for record
+            var car = _db.Cars.FirstOrDefault(q => q.Id == id);
+
+            //delete vehicle from table
+            _db.Cars.Remove(car);
+            _db.SaveChanges();
+
+            gvVehicleList.Refresh();
         }
     }
 }
