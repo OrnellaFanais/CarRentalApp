@@ -86,5 +86,29 @@ namespace CarRentalApp
 
             gvVehicleList.Refresh();
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            //Simple Refresh Option
+            PopulateGrid();
+        }
+
+        private void PopulateGrid()
+        {
+            var cars = _db.Cars
+                .Select(q => new
+                {
+                    Make = q.Make,
+                    Model = q.Model,
+                    Vin = q.Vin,
+                    Year = q.Year,
+                    LicensePlateNumber = q.LicensePlateNumber,
+                    q.Id
+                })
+                .ToList();
+            gvVehicleList.DataSource = cars;
+            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
+            gvVehicleList.Columns[5].Visible = false;
+        }
     }
 }

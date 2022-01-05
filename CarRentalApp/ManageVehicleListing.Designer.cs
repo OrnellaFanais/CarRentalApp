@@ -34,7 +34,7 @@ namespace CarRentalApp
             this.btnAddCar = new System.Windows.Forms.Button();
             this.btnEditCar = new System.Windows.Forms.Button();
             this.btnDeleteCar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvVehicleList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,21 +88,22 @@ namespace CarRentalApp
             this.btnDeleteCar.UseVisualStyleBackColor = true;
             this.btnDeleteCar.Click += new System.EventHandler(this.btnDeleteCar_Click);
             // 
-            // button1
+            // btnRefresh
             // 
-            this.button1.Location = new System.Drawing.Point(56, 112);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 59);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRefresh.Location = new System.Drawing.Point(56, 112);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(150, 59);
+            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // ManageVehicleListing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 643);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeleteCar);
             this.Controls.Add(this.btnEditCar);
             this.Controls.Add(this.btnAddCar);
@@ -124,6 +125,6 @@ namespace CarRentalApp
         private System.Windows.Forms.Button btnAddCar;
         private System.Windows.Forms.Button btnEditCar;
         private System.Windows.Forms.Button btnDeleteCar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
