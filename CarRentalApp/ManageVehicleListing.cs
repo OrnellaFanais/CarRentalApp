@@ -32,20 +32,28 @@ namespace CarRentalApp
             //gvVehicleList.Columns[0].HeaderText = "ID";
             //gvVehicleList.Columns[1].HeaderText = "Make";
 
-            var cars = _db.Cars
-                .Select(q => new
-                {
-                    Make = q.Make,
-                    Model = q.Model,
-                    Vin = q.Vin,
-                    Year = q.Year,
-                    LicensePlateNumber = q.LicensePlateNumber,
-                    q.Id
-                })
-                .ToList();
-            gvVehicleList.DataSource = cars;
-            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
-            gvVehicleList.Columns[5].Visible = false;
+            //var cars = _db.Cars
+            //    .Select(q => new
+            //    {
+            //        Make = q.Make,
+            //        Model = q.Model,
+            //        Vin = q.Vin,
+            //        Year = q.Year,
+            //        LicensePlateNumber = q.LicensePlateNumber,
+            //        q.Id
+            //    })
+            //    .ToList();
+            //gvVehicleList.DataSource = cars;
+            //gvVehicleList.Columns[4].HeaderText = "License Plate Number";
+            //gvVehicleList.Columns[5].Visible = false;
+            try
+            {
+                PopulateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error: {ex.Message}");
+            }
         }
 
         private void btnAddCar_Click(object sender, EventArgs e)
@@ -57,34 +65,50 @@ namespace CarRentalApp
 
         private void btnEditCar_Click(object sender, EventArgs e)
         {
-            // get Id of sellected row = when click to row
-            // give me the selected the first selected row, and give me 
-            // the cell call id (it's column) and the value it's not
-            //visible 
-            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
+            try
+            {
+                // get Id of sellected row = when click to row
+                // give me the selected the first selected row, and give me 
+                // the cell call id (it's column) and the value it's not
+                //visible 
+                var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
-            //query database for record
-            var car = _db.Cars.FirstOrDefault(q => q.Id == id);
+                //query database for record
+                var car = _db.Cars.FirstOrDefault(q => q.Id == id);
 
-            //launch AddEditVehicle window with data
-            var addEditVehicle = new AddEditVehicle(car);
-            addEditVehicle.MdiParent = this.MdiParent;
-            addEditVehicle.Show();
+                //launch AddEditVehicle window with data
+                var addEditVehicle = new AddEditVehicle(car);
+                addEditVehicle.MdiParent = this.MdiParent;
+                addEditVehicle.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error: {ex.Message}");
+            }
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
         {
-            // get Id of sellected row = when click to row
-            var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
+            try
+            {
+                // get Id of sellected row = when click to row
+                var id = (int)gvVehicleList.SelectedRows[0].Cells["Id"].Value;
 
-            //query database for record
-            var car = _db.Cars.FirstOrDefault(q => q.Id == id);
+                //query database for record
+                var car = _db.Cars.FirstOrDefault(q => q.Id == id);
 
-            //delete vehicle from table
-            _db.Cars.Remove(car);
-            _db.SaveChanges();
+                //delete vehicle from table
+                _db.Cars.Remove(car);
+                _db.SaveChanges();
 
-            gvVehicleList.Refresh();
+                gvVehicleList.Refresh();  
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($" Error: {ex.Message}");
+            }
+            
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

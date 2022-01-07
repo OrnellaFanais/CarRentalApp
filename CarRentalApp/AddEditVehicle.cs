@@ -61,17 +61,26 @@ namespace CarRentalApp
             else
             {
                 // Add code here
-                var newCar = new Car
+                try
                 {
-                    LicensePlateNumber = tbLicenseNum.Text,
-                    Make = tbMake.Text,
-                    Model = tbModel.Text,
-                    Vin = tbVin.Text,
-                    Year = int.Parse(tbYear.Text)              
-                };
+                    var newCar = new Car
+                    {
+                        LicensePlateNumber = tbLicenseNum.Text,
+                        Make = tbMake.Text,
+                        Model = tbModel.Text,
+                        Vin = tbVin.Text,
+                        Year = int.Parse(tbYear.Text)
+                    };
 
-                _db.Cars.Add(newCar);
-                _db.SaveChanges();
+                    _db.Cars.Add(newCar);
+                    _db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show($"Error: {ex.Message} \n\t All fields need to be completed!");
+                }
+                
             }
         }
 
