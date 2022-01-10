@@ -26,9 +26,18 @@ namespace CarRentalApp
         {
             InitializeComponent();
             lblTitle.Text = "Edit Vehicle";
-            isEditMode = true;
-            _db = new CarRentalEntities();
-            PopulateFields(carToEdit);
+            this.Text = "Edit Vehicle";
+            if (carToEdit == null)
+            {
+                MessageBox.Show("Please ensure that you select a valid record to edit");
+                Close();
+            }
+            else
+            {
+                isEditMode = true;
+                _db = new CarRentalEntities();
+                PopulateFields(carToEdit);
+            }            
         }
 
         private void PopulateFields(Car car)
@@ -56,6 +65,7 @@ namespace CarRentalApp
                 car.LicensePlateNumber = tbLicenseNum.Text;
 
                 _db.SaveChanges();
+                this.Close();
 
             }
             else
@@ -74,6 +84,7 @@ namespace CarRentalApp
 
                     _db.Cars.Add(newCar);
                     _db.SaveChanges();
+                    this.Close();
                 }
                 catch (Exception ex)
                 {

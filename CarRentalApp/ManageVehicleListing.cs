@@ -132,7 +132,7 @@ namespace CarRentalApp
                 .ToList();
             gvVehicleList.DataSource = cars;
             gvVehicleList.Columns[4].HeaderText = "License Plate Number";
-            gvVehicleList.Columns[5].Visible = false;
+            gvVehicleList.Columns["Id"].Visible = false;
         }
     }
 }

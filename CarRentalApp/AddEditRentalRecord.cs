@@ -10,38 +10,48 @@ using System.Windows.Forms;
 
 namespace CarRentalApp
 {
-    public partial class AddRentalRecord : Form
+    public partial class AddEditRentalRecord : Form
     {
+        private bool isEditMode;
         //carRentalEntities is going to give me access to every single entity
         //that is inside of my model or every table.
         //I would of basically established an instance of connection
         //to my database through the declaration of this property
-        private readonly CarRentalEntities carRentalEntities;
-        public AddRentalRecord()
+        private readonly CarRentalEntities _db;
+        public AddEditRentalRecord()
         {
             InitializeComponent();
-            //I initialized it in the constructor
-            carRentalEntities = new CarRentalEntities();
+            lblTitleRecord.Text = "Add new Rental Record";
+            this.Text = "Add new Rental Record";
+            isEditMode = false;
+            _db = new CarRentalEntities();
+            
+        }
+        public AddEditRentalRecord(CarRentalRecord recordToEdit)
+        {
+            InitializeComponent();
+            lblTitleRecord.Text = "Edit Rental Record";
+            this.Text = "Edit Rental Record";
+            if (recordToEdit == null)
+            {
+                MessageBox.Show("Please ensure that you select a valid record to edit");
+                Close();
+            }
+            else
+            {
+                isEditMode = true;
+                _db = new CarRentalEntities();
+                PopulateFields(recordToEdit);
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void PopulateFields(CarRentalRecord recordToEdit)
         {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
+            tbCustomerName.Text = recordToEdit.CustomerName;
+            dtRented.Value = (DateTime)recordToEdit.DateRented;
+            dtReturned.Value = (DateTime)recordToEdit.DateReturned;
+            tbCost.Text = recordToEdit.Cost.ToString();
+            lblRecordId.Text = recordToEdit.Id.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -74,27 +84,39 @@ namespace CarRentalApp
 
                 //if (isValid == true)
                 if (isValid)
-                {                   
+                {
                     //This class directly matches the car into a card table that we created
+                    //Declare an object of th record to be added
                     var rentalRecord = new CarRentalRecord();
-
-                    //the value of the customer name value that I just collected from my form
-                    //the textbox store in customer name in the winforms
+                    //if in editMode, the get the ID and retrieve the record from the database 
+                    //and place the secult in the record object
+                    if (isEditMode)
+                    {
+                        var id = int.Parse(lblRecordId.Text);
+                        rentalRecord = _db.CarRentalRecords.FirstOrDefault(q => q.Id == id);                      
+                    }
+                    //Populate record object with value from the form
                     rentalRecord.CustomerName = customerName;
                     rentalRecord.DateRented = dateOut;
                     rentalRecord.DateReturned = dateIn;
                     rentalRecord.Cost = (decimal)cost;
                     rentalRecord.TypeOfCarId = (int)cbTypeOfCar.SelectedValue;
-
-                    carRentalEntities.CarRentalRecords.Add(rentalRecord);
-                    carRentalEntities.SaveChanges();
+                    //if not in edit mode, then add the record object to the db
+                    if (!isEditMode)
+                    {
+                        _db.CarRentalRecords.Add(rentalRecord);
+                    }
+                    //sae changes made to the entity
+                    _db.SaveChanges();
 
                     MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
-                    $"Date rented: {dateOut} \n\r" +
-                    $"Date renturned: {dateIn} \n\r" +
-                    $"Cost: {cost} \n\r" +
-                    $"Car Type: {carType} \n\r" +
-                    $"THANK YOU FOR YOUR BUSINESS");
+                        $"Date rented: {dateOut} \n\r" +
+                        $"Date renturned: {dateIn} \n\r" +
+                        $"Cost: {cost} \n\r" +
+                        $"Car Type: {carType} \n\r" +
+                        $"THANK YOU FOR YOUR BUSINESS");
+                   
+                    this.Close();
                 }
                 else
                 {
@@ -104,10 +126,7 @@ namespace CarRentalApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //throw;
-            }
-            
-            
+            } 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -117,7 +136,7 @@ namespace CarRentalApp
             //Select * from Cars (I'm querying the database for the list
             //of cars
             //var cars = carRentalEntities.Cars.ToList();
-            var cars = carRentalEntities.Cars
+            var cars = _db.Cars
                 .Select(q => new
                 {
                     Id = q.Id,
