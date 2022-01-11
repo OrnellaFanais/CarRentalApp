@@ -30,7 +30,7 @@ namespace CarRentalApp
             }
         }
 
-        private void PopulateGrid()
+        public void PopulateGrid()
         {
             var records = _db.CarRentalRecords
                 .Select(q => new
@@ -52,7 +52,7 @@ namespace CarRentalApp
 
         private void btnAddRecord_Click(object sender, EventArgs e)
         {
-            AddEditRentalRecord addRentalRecord = new AddEditRentalRecord();
+            AddEditRentalRecord addRentalRecord = new AddEditRentalRecord(this);
             addRentalRecord.MdiParent = this.MdiParent;
             addRentalRecord.Show();
         }
@@ -68,7 +68,7 @@ namespace CarRentalApp
                 var record = _db.CarRentalRecords.FirstOrDefault(q => q.Id == id);
 
 
-                var addEditRentalRecord = new AddEditRentalRecord(record);
+                var addEditRentalRecord = new AddEditRentalRecord(record, this);
                 addEditRentalRecord.MdiParent = this.MdiParent;
                 addEditRentalRecord.Show();
             }
@@ -88,11 +88,15 @@ namespace CarRentalApp
                 //query database for record
                 var record = _db.CarRentalRecords.FirstOrDefault(q => q.Id == id);
 
-                //delete vehicle from table
-                _db.CarRentalRecords.Remove(record);
-                _db.SaveChanges();
-
-                PopulateGrid();
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete this record?",
+                    "Delete", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes)
+                {
+                    //delete vehicle from table
+                    _db.CarRentalRecords.Remove(record);
+                    _db.SaveChanges();
+                }
+                PopulateGrid();           
             }
             catch (Exception ex)
             {

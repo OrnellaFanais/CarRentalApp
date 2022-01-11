@@ -13,25 +13,28 @@ namespace CarRentalApp
     public partial class AddEditRentalRecord : Form
     {
         private bool isEditMode;
+        private ManageRentalRecords _manageRentalRecords;
         //carRentalEntities is going to give me access to every single entity
         //that is inside of my model or every table.
         //I would of basically established an instance of connection
         //to my database through the declaration of this property
         private readonly CarRentalEntities _db;
-        public AddEditRentalRecord()
+        public AddEditRentalRecord(ManageRentalRecords manageRentalRecords = null)
         {
             InitializeComponent();
             lblTitleRecord.Text = "Add new Rental Record";
             this.Text = "Add new Rental Record";
             isEditMode = false;
+            _manageRentalRecords = manageRentalRecords;
             _db = new CarRentalEntities();
             
         }
-        public AddEditRentalRecord(CarRentalRecord recordToEdit)
+        public AddEditRentalRecord(CarRentalRecord recordToEdit, ManageRentalRecords manageRentalRecords = null)
         {
             InitializeComponent();
             lblTitleRecord.Text = "Edit Rental Record";
             this.Text = "Edit Rental Record";
+            _manageRentalRecords = manageRentalRecords;
             if (recordToEdit == null)
             {
                 MessageBox.Show("Please ensure that you select a valid record to edit");
@@ -108,15 +111,14 @@ namespace CarRentalApp
                     }
                     //sae changes made to the entity
                     _db.SaveChanges();
-
+                    _manageRentalRecords.PopulateGrid();
                     MessageBox.Show($"Customer name: {tbCustomerName.Text} \n\r " +
                         $"Date rented: {dateOut} \n\r" +
                         $"Date renturned: {dateIn} \n\r" +
                         $"Cost: {cost} \n\r" +
                         $"Car Type: {carType} \n\r" +
-                        $"THANK YOU FOR YOUR BUSINESS");
-                   
-                    this.Close();
+                        $"THANK YOU FOR YOUR BUSINESS");                   
+                    Close();
                 }
                 else
                 {
