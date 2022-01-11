@@ -12,9 +12,15 @@ namespace CarRentalApp
 {
     public partial class MainWindow : Form
     {
+        private Login _login;
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public MainWindow(Login login)
+        {
+            InitializeComponent();
+            _login = login;
         }
 
         private void addRentalRecordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,5 +60,11 @@ namespace CarRentalApp
             }
                 
         }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Close();
+        }
     }
 }
+ 
