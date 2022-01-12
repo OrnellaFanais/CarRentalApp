@@ -47,7 +47,7 @@ namespace CarRentalApp
                 // assign the value to a password or to a variable 
                 var hashed_password = sBuiler.ToString();
 
-                var user = _db.Users.FirstOrDefault(q => q.Username == username && q.Password == password);
+                var user = _db.Users.FirstOrDefault(q => q.Username == username && q.Password == hashed_password);
                 if (user == null )
                 {
                     MessageBox.Show("Please provide valid credentials");
