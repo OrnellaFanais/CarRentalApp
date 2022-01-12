@@ -43,7 +43,7 @@ namespace CarRentalApp
             this.btnDeactivateUser.Name = "btnDeactivateUser";
             this.btnDeactivateUser.Size = new System.Drawing.Size(207, 66);
             this.btnDeactivateUser.TabIndex = 15;
-            this.btnDeactivateUser.Text = "Deactivate User";
+            this.btnDeactivateUser.Text = "Deactivate/Activate User";
             this.btnDeactivateUser.UseVisualStyleBackColor = true;
             this.btnDeactivateUser.Click += new System.EventHandler(this.btnDeactivateUser_Click);
             // 
