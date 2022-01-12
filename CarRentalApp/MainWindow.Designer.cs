@@ -56,7 +56,7 @@ namespace CarRentalApp
             // manageVehicleListingToolStripMenuItem
             // 
             this.manageVehicleListingToolStripMenuItem.Name = "manageVehicleListingToolStripMenuItem";
-            this.manageVehicleListingToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
+            this.manageVehicleListingToolStripMenuItem.Size = new System.Drawing.Size(207, 29);
             this.manageVehicleListingToolStripMenuItem.Text = "Manage Vehicle Listing";
             this.manageVehicleListingToolStripMenuItem.Click += new System.EventHandler(this.manageVehicleListingToolStripMenuItem_Click);
             // 
@@ -67,7 +67,7 @@ namespace CarRentalApp
             this.viewArchiveToolStripMenuItem,
             this.editRentalRecordToolStripMenuItem});
             this.manageRentalRecordsToolStripMenuItem.Name = "manageRentalRecordsToolStripMenuItem";
-            this.manageRentalRecordsToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.manageRentalRecordsToolStripMenuItem.Size = new System.Drawing.Size(213, 29);
             this.manageRentalRecordsToolStripMenuItem.Text = "Manage Rental Records";
             // 
             // addRentalRecordToolStripMenuItem
@@ -108,6 +108,7 @@ namespace CarRentalApp
             this.Name = "MainWindow";
             this.Text = "Car Rental Management System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
