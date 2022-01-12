@@ -30,33 +30,23 @@ namespace CarRentalApp
                 var username = tbUsername.Text.Trim();
                 var password = tbPassword.Text;
 
-                // Convert the input string to a byte array and compute the hash
-                byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                //Create a new stringbuilder to collect the byte
-                //and create a string
-                StringBuilder sBuiler = new StringBuilder();
-
-                //For loop through each byte of the hashed data and format
-                //each one as a hexadecimal string
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuiler.Append(data[i].ToString("x2"));
-                }
 
                 // assign the value to a password or to a variable 
-                var hashed_password = sBuiler.ToString();
+                var hashed_password = Utils.HashPassword(password);                    
 
-                var user = _db.Users.FirstOrDefault(q => q.Username == username && q.Password == hashed_password);
+                //Check for matching username, password and active flag
+                var user = _db.Users.FirstOrDefault(q => q.Username == username && q.Password == hashed_password
+                            && q.IsActive == true);
                 if (user == null )
                 {
                     MessageBox.Show("Please provide valid credentials");
                 }
                 else
                 {
-                    var role = user.UserRoles.FirstOrDefault();
-                    var roleShortName = role.Role.ShortName; 
-                    var mainWindow = new MainWindow(this, roleShortName);
+                    //var role = user.UserRoles.FirstOrDefault();
+                    //var roleShortName = role.Role.ShortName; 
+                    //var mainWindow = new MainWindow(this, roleShortName);
+                    var mainWindow = new MainWindow(this, user);
                     mainWindow.Show();
                     Hide();
                 }

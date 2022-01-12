@@ -155,6 +155,7 @@
     <Compile Include="UserRole.cs">
       <DependentUpon>CarRentalDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="AddEditVehicle.resx">
       <DependentUpon>AddEditVehicle.cs</DependentUpon>
     </EmbeddedResource>
