@@ -132,6 +132,12 @@
     <Compile Include="ManageRentalRecords.Designer.cs">
       <DependentUpon>ManageRentalRecords.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageUsers.Designer.cs">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageVehicleListing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageRentalRecords.resx">
       <DependentUpon>ManageRentalRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageUsers.resx">
+      <DependentUpon>ManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageVehicleListing.resx">
       <DependentUpon>ManageVehicleListing.cs</DependentUpon>

@@ -65,6 +65,19 @@ namespace CarRentalApp
         {
             _login.Close();
         }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var OpenForms = Application.OpenForms.Cast<Form>();
+            //declare a variable where I want to say is open
+            var isOpen = OpenForms.Any(q => q.Name == "ManageUsers");
+            if (!isOpen)
+            {
+                var manageUsers = new ManageUsers();
+                manageUsers.MdiParent = this;
+                manageUsers.Show();
+            }       
+        }
     }
 }
  
