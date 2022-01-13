@@ -87,6 +87,14 @@ namespace CarRentalApp
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // it is the password is the same of the default hash password
+            //we need to launch window for a reset password
+            if (_user.Password == Utils.DefaultHashedPassword())
+            {
+                var resetPassword = new ResetPassword(_user);
+                resetPassword.ShowDialog();
+            }
+
             var username = _user.Username;
             tsiLoginText.Text = $"Logged in as: {username}";
             if (_roleName != "Admin")
