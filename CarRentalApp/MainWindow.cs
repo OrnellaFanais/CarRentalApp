@@ -57,6 +57,7 @@ namespace CarRentalApp
             var OpenForms = Application.OpenForms.Cast<Form>();
             //declare a variable where I want to say is open
             var isOpen = OpenForms.Any(q => q.Name == "ManageRentalRecords");
+            //Utils.FormIsOpen("ManageRentalRecords");
             if (!isOpen)
             {
                 var manageRentalRecords = new ManageRentalRecords();
@@ -86,8 +87,10 @@ namespace CarRentalApp
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            var username = _user.Username;
+            tsiLoginText.Text = $"Logged in as: {username}";
             if (_roleName != "Admin")
-            {
+            {             
                 manageUsersToolStripMenuItem.Visible = false;
             }
         }

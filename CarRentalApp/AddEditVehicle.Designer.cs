@@ -202,7 +202,7 @@ namespace CarRentalApp
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddEditVehicle";
-            this.Text = "AddEditVehicle";
+            this.Text = "Add Edit Vehicle";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

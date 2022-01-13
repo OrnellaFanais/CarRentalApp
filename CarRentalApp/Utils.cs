@@ -42,5 +42,31 @@ namespace CarRentalApp
             return sBuiler.ToString();
         }
 
+        //Every time we call this function it will just hash that default password
+        //taht we have set.
+        public static string DefaultHashedPassword()
+        {
+            // Add encryption
+            SHA256 sha = SHA256.Create();
+
+            // Convert the input string to a byte array and compute the hash
+            byte[] data = sha.ComputeHash(Encoding.UTF8.GetBytes("Password@123"));
+
+            //Create a new stringbuilder to collect the byte
+            //and create a string
+            StringBuilder sBuiler = new StringBuilder();
+
+            //For loop through each byte of the hashed data and format
+            //each one as a hexadecimal string
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuiler.Append(data[i].ToString("x2"));
+            }
+
+            // assign the value to a password or to a variable 
+            //var hashed_password = sBuiler.ToString();
+
+            return sBuiler.ToString();
+        }
     }
 }

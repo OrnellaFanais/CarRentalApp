@@ -21,7 +21,13 @@ namespace CarRentalApp
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            //populateGrid()
+
+            if (!Utils.FormIsOpen("AddUser"))
+            {
+                var addUser = new AddUser();
+                addUser.MdiParent = this.MdiParent;
+                addUser.Show();
+            }
         }
 
         private void btnResetPassword_Click(object sender, EventArgs e)
@@ -37,8 +43,7 @@ namespace CarRentalApp
                 //query database for record
                 var user = _db.Users.FirstOrDefault(q => q.Id == id);
 
-                var genericPassword = "Password@123";
-                var hashed_password = Utils.HashPassword(genericPassword);
+                var hashed_password = Utils.DefaultHashedPassword();
                 user.Password = hashed_password;
                 _db.SaveChanges();
 
