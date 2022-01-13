@@ -13,10 +13,12 @@ namespace CarRentalApp
     public partial class AddUser : Form
     {
         private readonly CarRentalEntities _db;
-        public AddUser()
+        private ManageUsers _manageUsers;
+        public AddUser(ManageUsers manageUsers)
         {
             InitializeComponent();
             _db = new CarRentalEntities();
+            _manageUsers = manageUsers;
         }
 
         private void AddUser_Load(object sender, EventArgs e)
@@ -62,7 +64,9 @@ namespace CarRentalApp
                 _db.UserRoles.Add(userRole);
                 _db.SaveChanges();
 
-                MessageBox.Show($"New User {user.Username} added successfully");
+                MessageBox.Show($"New User '{user.Username}' added successfully");
+                //Refresh the grid 
+                _manageUsers.PopulateGrid();
                 Close();
             }
             catch (Exception)

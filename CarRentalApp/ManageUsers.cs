@@ -24,7 +24,7 @@ namespace CarRentalApp
 
             if (!Utils.FormIsOpen("AddUser"))
             {
-                var addUser = new AddUser();
+                var addUser = new AddUser(this);
                 addUser.MdiParent = this.MdiParent;
                 addUser.Show();
             }
@@ -48,6 +48,7 @@ namespace CarRentalApp
                 _db.SaveChanges();
 
                 MessageBox.Show($"{user.Username}'s Password has been reset");
+                PopulateGrid();
             }
             catch (Exception ex)
             {
@@ -75,11 +76,41 @@ namespace CarRentalApp
                 _db.SaveChanges();
 
                 MessageBox.Show($"{user.Username} active status has changed");
+                PopulateGrid();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($" Error: {ex.Message}");
             }
+        }
+
+        private void ManageUsers_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                PopulateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($" Error: {ex.Message}");
+            }
+        }
+
+        public void PopulateGrid()
+        {
+            var users = _db.Users
+                .Select(q => new
+                {
+                    Username = q.Username,
+                    //Inner join
+                    Role = q.UserRoles.FirstOrDefault().Role.Name,   
+                    Status = q.IsActive,
+                    q.Id
+                })
+                .ToList();
+            gvUserList.DataSource = users;
+            
+            gvUserList.Columns["Id"].Visible = false;
         }
     }
 }
