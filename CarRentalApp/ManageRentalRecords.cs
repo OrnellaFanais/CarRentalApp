@@ -67,7 +67,6 @@ namespace CarRentalApp
                 //query database for record
                 var record = _db.CarRentalRecords.FirstOrDefault(q => q.Id == id);
 
-
                 var addEditRentalRecord = new AddEditRentalRecord(record, this);
                 addEditRentalRecord.MdiParent = this.MdiParent;
                 addEditRentalRecord.Show();
@@ -95,8 +94,10 @@ namespace CarRentalApp
                     //delete vehicle from table
                     _db.CarRentalRecords.Remove(record);
                     _db.SaveChanges();
+
+                    PopulateGrid();
                 }
-                PopulateGrid();           
+                         
             }
             catch (Exception ex)
             {

@@ -39,32 +39,22 @@ namespace CarRentalApp
 
         private void manageVehicleListingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //give me a list od the open forms of all of the data type form
-            var OpenForms = Application.OpenForms.Cast<Form>();
-            //declare a variable where I want to say is open
-            var isOpen = OpenForms.Any(q => q.Name == "ManageVehicleListing");
-            if (!isOpen)
+            if (!Utils.FormIsOpen("ManageVehicleListing"))
             {
                 var vehicleListing = new ManageVehicleListing();
                 vehicleListing.MdiParent = this;
                 vehicleListing.Show();
             }
-            
         }
 
         private void viewArchiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var OpenForms = Application.OpenForms.Cast<Form>();
-            //declare a variable where I want to say is open
-            var isOpen = OpenForms.Any(q => q.Name == "ManageRentalRecords");
-            //Utils.FormIsOpen("ManageRentalRecords");
-            if (!isOpen)
+            if (!Utils.FormIsOpen("ManageRentalRecords"))
             {
                 var manageRentalRecords = new ManageRentalRecords();
                 manageRentalRecords.MdiParent = this;
                 manageRentalRecords.Show();
             }
-                
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,15 +64,12 @@ namespace CarRentalApp
 
         private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var OpenForms = Application.OpenForms.Cast<Form>();
-            //declare a variable where I want to say is open
-            var isOpen = OpenForms.Any(q => q.Name == "ManageUsers");
-            if (!isOpen)
+            if (!Utils.FormIsOpen("ManageUsers"))
             {
                 var manageUsers = new ManageUsers();
                 manageUsers.MdiParent = this;
                 manageUsers.Show();
-            }       
+            }
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

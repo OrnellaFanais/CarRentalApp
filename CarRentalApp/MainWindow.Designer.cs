@@ -32,9 +32,7 @@ namespace CarRentalApp
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.manageVehicleListingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageRentalRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRentalRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewArchiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editRentalRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsiLoginText = new System.Windows.Forms.ToolStripStatusLabel();
@@ -66,32 +64,17 @@ namespace CarRentalApp
             // manageRentalRecordsToolStripMenuItem
             // 
             this.manageRentalRecordsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addRentalRecordToolStripMenuItem,
-            this.viewArchiveToolStripMenuItem,
-            this.editRentalRecordToolStripMenuItem});
+            this.viewArchiveToolStripMenuItem});
             this.manageRentalRecordsToolStripMenuItem.Name = "manageRentalRecordsToolStripMenuItem";
             this.manageRentalRecordsToolStripMenuItem.Size = new System.Drawing.Size(213, 29);
             this.manageRentalRecordsToolStripMenuItem.Text = "Manage Rental Records";
             // 
-            // addRentalRecordToolStripMenuItem
-            // 
-            this.addRentalRecordToolStripMenuItem.Name = "addRentalRecordToolStripMenuItem";
-            this.addRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(261, 34);
-            this.addRentalRecordToolStripMenuItem.Text = "Add Rental Record";
-            this.addRentalRecordToolStripMenuItem.Click += new System.EventHandler(this.addRentalRecordToolStripMenuItem_Click);
-            // 
             // viewArchiveToolStripMenuItem
             // 
             this.viewArchiveToolStripMenuItem.Name = "viewArchiveToolStripMenuItem";
-            this.viewArchiveToolStripMenuItem.Size = new System.Drawing.Size(261, 34);
+            this.viewArchiveToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.viewArchiveToolStripMenuItem.Text = "View Archive";
             this.viewArchiveToolStripMenuItem.Click += new System.EventHandler(this.viewArchiveToolStripMenuItem_Click);
-            // 
-            // editRentalRecordToolStripMenuItem
-            // 
-            this.editRentalRecordToolStripMenuItem.Name = "editRentalRecordToolStripMenuItem";
-            this.editRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(261, 34);
-            this.editRentalRecordToolStripMenuItem.Text = "Edit Rental Record";
             // 
             // manageUsersToolStripMenuItem
             // 
@@ -143,9 +126,7 @@ namespace CarRentalApp
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem manageVehicleListingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageRentalRecordsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addRentalRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewArchiveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editRentalRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageUsersToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsiLoginText;
