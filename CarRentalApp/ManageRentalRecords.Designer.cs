@@ -91,11 +91,11 @@ namespace CarRentalApp
             // gvRecordList
             // 
             this.gvRecordList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvRecordList.Location = new System.Drawing.Point(12, 194);
+            this.gvRecordList.Location = new System.Drawing.Point(39, 184);
             this.gvRecordList.Name = "gvRecordList";
             this.gvRecordList.RowHeadersWidth = 62;
             this.gvRecordList.RowTemplate.Height = 28;
-            this.gvRecordList.Size = new System.Drawing.Size(930, 322);
+            this.gvRecordList.Size = new System.Drawing.Size(872, 322);
             this.gvRecordList.TabIndex = 6;
             // 
             // ManageRentalRecords

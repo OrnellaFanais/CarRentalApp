@@ -70,11 +70,11 @@ namespace CarRentalApp
             // gvUserList
             // 
             this.gvUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvUserList.Location = new System.Drawing.Point(12, 121);
+            this.gvUserList.Location = new System.Drawing.Point(172, 117);
             this.gvUserList.Name = "gvUserList";
             this.gvUserList.RowHeadersWidth = 62;
             this.gvUserList.RowTemplate.Height = 28;
-            this.gvUserList.Size = new System.Drawing.Size(930, 322);
+            this.gvUserList.Size = new System.Drawing.Size(575, 322);
             this.gvUserList.TabIndex = 12;
             // 
             // lblTitle
